@@ -35,9 +35,6 @@ fn main() {
         ir = rom[pc];
         pc += 1;
         println!("ir:{:b} pc:{}", ir, pc);
-        if ir == regs::hlt() {
-            break;
-        }
 
         let code = regs::op_code(ir);
         let reg_a = regs::op_reg_a(ir) as usize;
@@ -64,6 +61,10 @@ fn main() {
             _ => (),
         }
         println!("{}", ram[64]);
+
+        if ir == regs::hlt() {
+            break;
+        }
     }
 
     println!("Hello, world!");
